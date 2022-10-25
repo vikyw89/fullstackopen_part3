@@ -1,10 +1,10 @@
-GET https://fullstackopenpart3.vikyw.repl.co/api/persons
+GET https://ill-tan-chinchilla-boot.cyclic.app/api/persons
 
 ###
-DELETE https://fullstackopenpart3.vikyw.repl.co/api/persons/2
+DELETE https://ill-tan-chinchilla-boot.cyclic.app/api/persons/2
 
 ###
-POST https://fullstackopenpart3.vikyw.repl.co/api/persons/ HTTP/1.1
+POST https://ill-tan-chinchilla-boot.cyclic.app/api/persons/ HTTP/1.1
 content-type: application/json
 
 {
