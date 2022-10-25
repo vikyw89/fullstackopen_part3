@@ -54,11 +54,37 @@ app.get('/api/persons/:id', (req, res) => {
     }
 })
 
-app.delete('/api/persons/:id', (req,res) => {
+app.delete('/api/persons/:id', (req, res) => {
     const id = Number(req.params.id)
     console.log('delete/api/persons/:id', id)
     persons = persons.filter(person => person.id !== id)
     res.status(204).end()
+})
+
+const generateId = () => {
+    return Math.floor(Math.random() * 999)
+}
+
+app.post('/api/persons', (req, res) => {
+    console.log('post/api/persons')
+    const body = req.body
+
+    if (!body.name) {
+        return res.status(400).json({
+            error: 'name missing',
+        })
+    }
+
+    const person = {
+        name: body.name,
+        number: body.number,
+        time: new Date(),
+        id: generateId()
+    }
+
+    persons = persons.concat(person)
+
+    res.json(person)
 })
 
 const PORT = 3001
