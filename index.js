@@ -26,9 +26,11 @@ let persons = [
 ]
   
 app.use(express.json())
+
 app.use(morgan('tiny', {
     skip: function (tokens, req, res) { return tokens.method === 'POST'}
 }))
+
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body', {
     skip: function (tokens, req, res) { return tokens.method !== 'POST'}
 }))
