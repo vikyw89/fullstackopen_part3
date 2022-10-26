@@ -30,14 +30,14 @@ app.get('/api/persons', (request, response) => {
 
 app.get('/info', (request, response) => {
     Person.find({}).then(persons => {
-        return response.send(`
+        return response.status(200).send(`
             <p>Phonebook has info for ${persons.length} people</p>
             <p>${new Date()}</p>
         `)
     })
 })
 
-app.get('/api/persons/:id', (request, response) => {
+app.get('/api/persons/:id', (request, response, next) => {
     Person
         .findById(request.params.id)
         .then(person => {
@@ -49,7 +49,9 @@ app.get('/api/persons/:id', (request, response) => {
                 })
             }
         })
+        .catch(error => next(error))
 })
+
 
 app.delete('/api/persons/:id', (request, response) => {
     Person
@@ -57,6 +59,7 @@ app.delete('/api/persons/:id', (request, response) => {
         .then(persons => {
             return response.status(204).end()
         })
+        .catch(error => next(error))
 })
 
 app.post('/api/persons', (request, response) => {
@@ -76,6 +79,27 @@ app.post('/api/persons', (request, response) => {
             return response.json(persons)
         })
 })
+
+
+const unknownEndpoint = (request, response) => {
+    response.status(404).send({ error: 'unknown endpoint' })
+  }
+  
+// handler of requests with unknown endpoint
+app.use(unknownEndpoint)
+
+const errorHandler = (error, request, response, next) => {
+    console.error(error.message)
+  
+    if (error.name === 'CastError') {
+      return response.status(400).send({ error: 'malformatted id' })
+    } 
+  
+    next(error)
+}
+
+// this has to be the last loaded middleware.
+app.use(errorHandler)
 
 const PORT = 3001
 app.listen(PORT, () => {
