@@ -1,13 +1,16 @@
-GET https://ill-tan-chinchilla-boot.cyclic.app/api/persons
+GET http://localhost:3001/api/persons
+###
+GET http://localhost:3001/api/persons/635802bf110fdc3a91e0fa20
+###
+GET http://localhost:3001/info
+###
+DELETE http://localhost:3001/api/persons/6357ff8458bc3039d21acd87
 
 ###
-DELETE https://ill-tan-chinchilla-boot.cyclic.app/api/persons/2
-
-###
-POST https://ill-tan-chinchilla-boot.cyclic.app/api/persons/ HTTP/1.1
+POST http://localhost:3001/api/persons/ HTTP/1.1
 content-type: application/json
 
 {
-    "name": "sample",
+    "name": "as",
     "number": "081234001700"
 }
