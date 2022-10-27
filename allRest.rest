@@ -4,7 +4,7 @@ GET http://localhost:3001/api/persons/6359057e3f695812d56e4dc9
 ###
 GET http://localhost:3001/info
 ###
-DELETE http://localhost:3001/api/persons/6357ff8458bc3039d21acd87
+DELETE http://localhost:3001/api/persons/6359057e3f695812d56e4dc9
 
 ###
 POST http://localhost:3001/api/persons/ HTTP/1.1
@@ -20,6 +20,6 @@ PUT http://localhost:3001/api/persons/6359057e3f695812d56e4dc9
 content-type: application/json
 
 {
-    "name": "asaa",
+    "name": "asasa",
     "number": "081234001700"
 }
