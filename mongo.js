@@ -16,37 +16,37 @@ const url = `mongodb+srv://fullstack:${password}@cluster0.lslwh0b.mongodb.net/ph
 mongoose.connect(url)
 
 const personSchema = new mongoose.Schema({
-    id: Number,
-    name: String,
-    number: String,
-    time: Date
+  id: Number,
+  name: String,
+  number: String,
+  time: Date
 })
 
 const Person = mongoose.model('Person', personSchema)
 
 if ((!name) || (!number)) {
-    console.log('phonebook:')
-    Person
-        .find({})
-        .then(result => {
-            result.forEach(n => {
-                console.log(n.name, n.number)
-            })
-            mongoose.connection.close()
-        })
+  console.log('phonebook:')
+  Person
+    .find({})
+    .then(result => {
+      result.forEach(n => {
+        console.log(n.name, n.number)
+      })
+      mongoose.connection.close()
+    })
 }
 
 const person = new Person({
-    name: name,
-    number: number,
+  name: name,
+  number: number,
 })
 
 if ((name) && (number)) {
   person
     .save()
     .then(result => {
-        console.log(`added ${name} number ${number} to phonebook`)
-        mongoose.connection.close()
+      console.log(`added ${name} number ${number} to phonebook`)
+      mongoose.connection.close()
     })
 }
-        
+
