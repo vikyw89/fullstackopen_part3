@@ -1,6 +1,6 @@
 GET http://localhost:3001/api/persons
 ###
-GET http://localhost:3001/api/persons/6359057e3f695812d56e4dc9
+GET http://localhost:3001/api/persons/6359060528c57d74b0305530
 ###
 GET http://localhost:3001/info
 ###
@@ -16,10 +16,10 @@ content-type: application/json
 }
 
 ###
-PUT http://localhost:3001/api/persons/6359057e3f695812d56e4dc9
+PUT http://localhost:3001/api/persons/635a34a7053c7fe066468ef4
 content-type: application/json
 
 {
-    "name": "asasa",
+    "name": "as",
     "number": "081234001700"
 }
