@@ -53,13 +53,28 @@ app.get('/api/persons/:id', (request, response, next) => {
 })
 
 
+app.put('/api/persons/:id', (request, response, next) => {
+    Person
+        .findOneAndReplace(request.params.id, request.body)
+        .then(person => {
+            if (person) {
+                return response.json(person)
+            } else {
+                return response.status(404).json({
+                    error: 'id not found'
+                })
+            }
+        })
+        .catch(error => next(error))
+})
+
+
 app.delete('/api/persons/:id', (request, response) => {
     Person
         .findByIdAndDelete(request.params.id)
-        .then(persons => {
-            return response.status(204).end()
+        .then(person => {
+            return response.json(person)
         })
-        .catch(error => next(error))
 })
 
 app.post('/api/persons', (request, response) => {
@@ -75,8 +90,8 @@ app.post('/api/persons', (request, response) => {
     })
     person
         .save()
-        .then(persons => {
-            return response.json(persons)
+        .then(person => {
+            return response.json(person)
         })
 })
 
