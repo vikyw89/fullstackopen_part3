@@ -55,7 +55,7 @@ app.get('/api/persons/:id', (request, response, next) => {
 
 app.put('/api/persons/:id', (request, response, next) => {
     Person
-        .findOneAndReplace(request.params.id, request.body)
+        .findByIdAndUpdate(request.params.id, request.body, { new: true })
         .then(person => {
             if (person) {
                 return response.json(person)
